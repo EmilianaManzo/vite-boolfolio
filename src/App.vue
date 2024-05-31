@@ -4,12 +4,14 @@
   import Header from './components/Header.vue';
   import Main from './components/Main.vue';
   import Footer from './components/Footer.vue';
+  import Paginator from './components/partialsMain/Paginator.vue';
 
   export default {
       components:{
         Header,
         Main,
         Footer,
+        Paginator
       },
       data(){
         return{
@@ -19,7 +21,9 @@
       },
       methods:{
         getApi(){
-          axios.get(store.apiUrl)
+          axios.get(store.apiUrl),{
+            params: this.store.queryParam
+          }
             .then(result =>{
               store.projects = result.data.data;
               console.log(result.data.data);
@@ -38,9 +42,8 @@
 
 
 <template>
-  <div>
-    <h1>hello</h1>
-  </div>
+  <Main />
+  <Paginator @nextPage="getApi" />
 </template>
 
 
