@@ -37,6 +37,16 @@ header{
       color: white;
       text-decoration: none;
       margin: 0 10px;
+      padding: 7px 10px;
+      &.router-link-active {
+        // la classe router-link-active viene fornita dal router quando si naviga su quella pagina e quindi possoamo sfruttarla per l'active
+        background-color: rgb(87, 161, 226);
+      }
+      &.active{
+         // alternativa sarebbe creare la classe active qui negli stili e poi farla aggingere nel router (guarda nel router la parte commentata)
+        background-color: rgb(87, 161, 226);
+
+      }
     }
   }
 }
