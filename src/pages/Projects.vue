@@ -4,11 +4,13 @@
   import ProjectCard from '../components/partialsMain/ProjectCard.vue';
   
   import Loader from '../components/partialsGeneric/Loader.vue';
+import Paginator from '../components/partialsMain/Paginator.vue';
   export default {
     name : 'Projects',
     components:{
         ProjectCard,
-        Loader
+        Loader,
+        Paginator
       },
       data(){
         return{
@@ -18,9 +20,9 @@
         }
       },
       methods:{
-        getApi(type = ''){
+        getApi(apiUrl,type = ''){
           this.loading = true
-          axios.get(store.apiUrl + type)
+          axios.get(apiUrl + type)
             .then(result =>{
               this.loading = false
               switch (type){
@@ -33,7 +35,12 @@
                   break;
                 default:
                   store.projects = result.data.data;
-                  console.log(result.data.data);
+                  store.paginator.current_page = result.data.current_page;
+                  store.paginator.links = result.data.links
+                  store.paginator.total = result.data.total
+
+                  // console.log(result.data);
+                  console.log(store.paginator);
                   break;
               }
 
@@ -45,9 +52,9 @@
         }
       },
       mounted(){
-        this.getApi('projects');
-        this.getApi('types');
-        this.getApi('tecnologies');
+        this.getApi(store.apiUrl, 'projects');
+        this.getApi(store.apiUrl, 'types');
+        this.getApi(store.apiUrl, 'tecnologies');
       }
   }
 </script>
@@ -83,6 +90,8 @@
       </div>
       
     </div>
+    <Paginator :data="store.paginator" v-if="!loading" @changePage="getApi"/>
+
     <Loader v-else />
 </template>
 
