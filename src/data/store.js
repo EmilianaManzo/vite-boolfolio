@@ -10,4 +10,6 @@ export const store = reactive({
 
   paginator: {},
 
+  project: {},
+
 })

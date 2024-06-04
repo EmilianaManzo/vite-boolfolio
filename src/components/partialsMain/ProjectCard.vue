@@ -3,12 +3,7 @@
 
   export default {
     props:{
-      title: String,
-      href: String,
-      desc: String,
-      type: String,
-      tecnologies:Array
-
+      project : Object
     }
   }
 </script>
@@ -17,14 +12,13 @@
   <div class="col my-5 ">
     <div class="card" style="width: 18rem; height: 40rem;">
       <div class="card-body rounded-pill my-2 ">
-        <h5 class="card-title my-1 text-uppercase ">{{ title }}</h5>
-        <div class="line my-3 "><a :href="href"></a></div>
-        <p class="card-text"><strong>Tipo:</strong>{{ type }}</p>
+        <h5 class="card-title my-1 text-uppercase "><router-link :to="{ name: 'projectDetail', params:{slug: project.slug}}">{{ project.title }}</router-link></h5>
+        <p class="card-text"><strong>Tipo:</strong>{{ project.type.name }}</p>
         <p class="card-text">
           <strong>Tecnologia:</strong>
-          <span class="badge rounded-pill text-bg-info" v-for="(tecnology, index) in tecnologies" :key="index">{{ tecnology.name }}</span>
+          <span class="badge rounded-pill text-bg-info" v-for="(tecnology, index) in project.tecnologies" :key="index">{{ tecnology.name }}</span>
         </p>
-        <p class="card-text m-0 "><strong>Descrizione:</strong>{{ desc }}</p>
+        <p class="card-text m-0 "><strong>Descrizione:</strong>{{ project.description }}</p>
         
       </div>
     </div>
@@ -35,5 +29,10 @@
 <style lang="scss" scoped>
   strong{
     margin-right: 10px;
+  }
+  a{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
   }
 </style>

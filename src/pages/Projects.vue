@@ -2,9 +2,9 @@
   import { store } from '../data/store.js';
   import axios from 'axios';
   import ProjectCard from '../components/partialsMain/ProjectCard.vue';
-  
   import Loader from '../components/partialsGeneric/Loader.vue';
-import Paginator from '../components/partialsMain/Paginator.vue';
+  import Paginator from '../components/partialsMain/Paginator.vue';
+  
   export default {
     name : 'Projects',
     components:{
@@ -39,7 +39,7 @@ import Paginator from '../components/partialsMain/Paginator.vue';
                   store.paginator.links = result.data.links
                   store.paginator.total = result.data.total
 
-                  // console.log(result.data);
+                  console.log(result.data);
                   console.log(store.paginator);
                   break;
               }
@@ -80,11 +80,7 @@ import Paginator from '../components/partialsMain/Paginator.vue';
         <ProjectCard
             v-for="project in store.projects"
             :key="project.id"
-            :title="project.title"
-            :href="project.href"
-            :desc="project.description"
-            :type="project.type.name"
-            :tecnologies="project.tecnologies"
+            :project = "project"
   
           />
       </div>
