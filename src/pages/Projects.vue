@@ -4,6 +4,7 @@
   import ProjectCard from '../components/partialsMain/ProjectCard.vue';
   import Loader from '../components/partialsGeneric/Loader.vue';
   import Paginator from '../components/partialsMain/Paginator.vue';
+import { router } from '../router.js';
   
   export default {
     name : 'Projects',
@@ -68,7 +69,7 @@
       <div class="row row-col-2 d-flex">
         <div class="types my-2">
             Tipi:
-            <span class="badge rounded-pill text-bg-success mx-1" v-for="item in store.types" :key="`ty-${item.id}`">{{ item.name }}</span>
+            <router-link class="badge rounded-pill text-bg-success mx-1" v-for="item in store.types" :key="`ty-${item.id}`" :to="{name:typeProjects, params:{slug:item.slug}}">{{ item.name }}</router-link>
         </div>
         <div class="tecn my-2">
             Tecnologie:
