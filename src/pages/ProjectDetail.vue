@@ -23,6 +23,46 @@
             })
       }
     },
+    computed:{
+      type(){
+        if(!store.project.type){
+          return 'nessun tipo'
+        }
+        return store.project.type.name 
+      },
+
+      projectCreated(){
+        // creo una nuova data in base al dato che arriva dall' Api 
+        const d = new Date (store.project?.created_at) ;
+        console.log(store.project.created_at);
+
+        // opzioni di visualizzazione della data 
+        let options = { 
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        }
+        // navigator.language restituisce la lingua del browser 
+        return new Intl.DateTimeFormat(navigator.language, options).format(d)
+      },
+      // projectUpdated(){
+      //   // creo una nuova data in base al dato che arriva dall' Api 
+      //   const d = new Date (store.project.updated_at);
+        
+      //   // opzioni di visualizzazione della data 
+      //   let options = {
+      //     year: 'numeric',
+      //     month: 'long',
+      //     day: 'numeric'
+      //   }
+      //   // navigator.language restituisce la lingua del browser 
+      //   return new Intl.DateTimeFormat(navigator.language, options).format(d)
+
+        
+      // }
+
+
+    },
     mounted(){
       this.getApi();
     }
@@ -34,11 +74,21 @@
     <div class="col project">
       <div class="title text-uppercase mb-5">
         <h1>{{ store.project.title }}</h1>
-        <img :src="store.project.image" :alt="store.project.title">
+        <img :src="`http://127.0.0.1:8000${store.project.image}`" :alt="store.project.title">
       </div>
+      <a :href="store.project.href" class="mb-2">View project</a>
       <div class="info">
-        <a :href="store.project.href">View project</a>
-
+        <p class="text-capitalize"><strong class="me-2">Autore:</strong>{{ store.project.user?.name }}</p>
+        <p><strong class="me-2">Data creazione:</strong>{{ projectCreated }}</p>
+        <p><strong class="me-2">Ultimo Aggiornamento:</strong>{{ projectUpdated }}</p>
+      </div>
+      <div>
+        <p class="card-text text-capitalize"><strong class="me-2">Tipo:</strong>{{ type }}</p>
+        <p class="card-text">
+          <strong class="me-2">Tecnologia:</strong>
+          <span class="badge rounded-pill text-bg-info" v-for="(tecnology, index) in store.project?.tecnologies" :key="index">{{ tecnology.name }}</span>
+        </p>
+        <p class="card-text m-0 text-capitalize"><strong class="me-2">Descrizione:</strong>{{ store.project.description }}</p>
       </div>
     </div>
   </div>
@@ -49,7 +99,7 @@
   .project{
 
     img{
-      max-width: 100%;
+      width: 50%;
     }
     a{
 
