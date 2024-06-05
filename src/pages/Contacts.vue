@@ -1,13 +1,62 @@
 <script>
+import { store } from '../data/store';
+import axios from 'axios';
   export default {
-    name : 'Contacts'
+    name : 'Contacts',
+    data(){
+      return{
+        name: [],
+        email: [],
+        message: [],
+      }
+    },
+    methods:{
+      sendEmail(){
+        const data = {
+          name: this.name,
+          email: this.email,
+          message: this.message,
+        }
+
+        axios.post(store.apiUrl + 'send-email', data)
+            .then(result =>{
+              console.log(result.data);
+            })
+            .catch(error =>{
+              console.log(error.message);
+            })
+        
+        console.log(data);
+      }
+    }
   }
 </script>
 <template>
   <div class="row">
     <div class="col">
       <h1>Contatti</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero quasi quos, delectus, unde excepturi vitae earum recusandae quibusdam inventore deserunt voluptate at doloremque asperiores repellat. Dolor accusantium quisquam corrupti autem soluta incidunt ipsam et perspiciatis voluptate, deleniti non quidem dolores corporis laboriosam a id provident quo laborum rerum voluptas repellat! Libero itaque sunt debitis, officia voluptates necessitatibus suscipit corrupti. Velit reiciendis eaque vero accusamus, mollitia dolorem, quasi, laudantium provident corrupti ullam nemo aut culpa fuga pariatur magni consequatur corporis quas officia non repellat quidem inventore distinctio maxime? Tenetur, quia quaerat dolore animi ab aliquid, itaque commodi magni perferendis, quod rerum.</p>
+      <div class="form">
+        <form @submit.prevent="sendEmail" >
+          <div>
+            <label for="name" class="form-label">Nome</label>
+            <input class="form-control mb-3" v-model="name" type="text" name="name" id="name">
+          </div>
+
+          <div>
+            <label for="email" class="form-label">Email</label>
+            <input class="form-control mb-3" type="email" v-model="email" name="email" id="email">
+          </div>
+
+          <div>
+            <label for="message" class="form-label">Messaggio</label>
+            <textarea class="form-control mb-3" v-model="message" name="message" id="message"></textarea>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary">Invia</button>
+          </div>
+        </form>
+
+      </div>
     </div>
   </div>
 </template>

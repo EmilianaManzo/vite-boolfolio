@@ -16,7 +16,7 @@
         <p class="card-text"><strong>Tipo:</strong>{{ project.type.name }}</p>
         <p class="card-text">
           <strong>Tecnologia:</strong>
-          <span class="badge rounded-pill text-bg-info" v-for="(tecnology, index) in project.tecnologies" :key="index">{{ tecnology.name }}</span>
+          <span class="badge rounded-pill text-bg-info mx-1" v-for="(tecnology, index) in project.tecnologies" :key="index">{{ tecnology.name }}</span>
         </p>
         <p class="card-text m-0 "><strong>Descrizione:</strong>{{ project.description }}</p>
         

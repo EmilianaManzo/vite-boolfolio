@@ -65,7 +65,7 @@
     <div class="col project">
       <div class="title text-uppercase mb-5">
         <h1>{{ store.project.title }}</h1>
-        <img :src="`http://127.0.0.1:8000${store.project.image}`" :alt="store.project.title">
+        <img :src="store.project.image" :alt="store.project.title">
       </div>
       <a :href="store.project.href" class="mb-2">View project</a>
       <div class="info">
@@ -78,7 +78,7 @@
         <p v-if="store.project.tecnologies" class="card-text">
           <strong class="me-2">Tecnologia:</strong>
          <span
-            class="badge rounded-pill text-bg-info"
+            class="badge rounded-pill text-bg-info mx-1"
             v-for="(tecnology, index) in store.project?.tecnologies"
             :key="index">{{ tecnology.name }}</span>
         </p>
