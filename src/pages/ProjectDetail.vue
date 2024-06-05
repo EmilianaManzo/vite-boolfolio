@@ -7,7 +7,7 @@
     data(){
       return{
         store,
-        flag : true,
+        flag :true,
       }
     },
 
@@ -31,11 +31,11 @@
         }
         return store.project.type.name 
       },
-
+      // TODO:bug 
       formatDate(){
         // const d = this.flag ? new Date (store.project.created_at) : new Date (store.project.updated_at);
         let d;
-        let dateValue = this.flag? store.project.created_at : store.project.updated_at;
+        let dateValue = this.flag ? store.project.created_at : store.project.updated_at;
         if (dateValue) {
           d = new Date(dateValue);
 
