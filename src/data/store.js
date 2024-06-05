@@ -9,9 +9,9 @@ export const store = reactive({
   tecnologies : [],
 
   paginator: {},
-
-  project: {},
+  project :{},
 
   typeName :'',
+  tecnologyName :'',
 
 })

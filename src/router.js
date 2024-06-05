@@ -7,6 +7,7 @@ import Projects from './pages/Projects.vue';
 import ProjectDetail from './pages/ProjectDetail.vue';
 import TypeProjects from './pages/TypeProjects.vue';
 import Error404 from './pages/Error404.vue';
+import TecnologiesProjects from "./pages/TecnologiesProjects.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -41,6 +42,11 @@ const router = createRouter({
       path: '/type-projects/:slug',
       name: 'typeProjects',
       component: TypeProjects
+    },
+    {
+      path: '/tecnologies-projects/:slug',
+      name: 'tecnologiesProjects',
+      component: TecnologiesProjects
     },
     {
       path: '/:pathMatch(.*)*',

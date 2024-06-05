@@ -69,11 +69,11 @@ import { router } from '../router.js';
       <div class="row row-col-2 d-flex">
         <div class="types my-2">
             Tipi:
-            <router-link class="badge rounded-pill text-bg-success mx-1" v-for="item in store.types" :key="`ty-${item.id}`" :to="{name:typeProjects, params:{slug:item.slug}}">{{ item.name }}</router-link>
+            <router-link class="badge rounded-pill text-bg-success mx-1" v-for="item in store.types" :key="`ty-${item.id}`" :to="{name: 'typeProjects', params:{slug: item.slug}}">{{ item.name }}</router-link>
         </div>
         <div class="tecn my-2">
             Tecnologie:
-            <span class="badge rounded-pill text-bg-info mx-1" v-for="item in store.tecnologies" :key="`tec-${item.id}`">{{ item.name }}</span>
+            <router-link class="badge rounded-pill text-bg-info mx-1" v-for="item in store.tecnologies" :key="`tec-${item.id}`" :to="{name: 'tecnologiesProjects', params:{slug: item.slug}}">{{ item.name }}</router-link>
         </div>
       </div>
       <div class="row" >
